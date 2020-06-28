@@ -1,0 +1,8 @@
+{
+  "name": "gostack-3rd-challenge",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:HelenDias/gostack-3rd-challenge.git",
+  "author": "Helen Dias <helendias.hd@gmail.com>",
+  "license": "MIT"
+}
