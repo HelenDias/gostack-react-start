@@ -15,7 +15,14 @@ function App() {
   })
 
   function handleAddRepository() {
-    setRepositories([...repositories, `Projeto ${Date.now()}`])
+    const data = {
+      title: 'Teste',
+      techs: ['Tecnologia 1', 'Tecnologia 2'],
+      url: 'http://teste.com/teste'
+    }
+
+    api.post('repositories', data)
+      .then(response => setRepositories([...repositories, response.data]))
   }
 
   return (
