@@ -1,26 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import appi from './services/api'
 
 import './App.css'
 
 import Header from './components/Header'
+import api from './services/api'
 
 function App() {
-  const [projects, setProjects] = useState(['Desenvolvimento de app', 'Front-end web'])
+  const [repositories, setRepositories] = useState([])
 
-  function handleAddProject() {
-    setProjects([...projects, `Projeto ${Date.now()}`])
+  useEffect(() => {
+    api.get('repositories')
+      .then(response => setRepositories(response.data))
+  })
+
+  function handleAddRepository() {
+    setRepositories([...repositories, `Projeto ${Date.now()}`])
   }
 
   return (
     <>
-      <Header title="Projects" />
+      <Header title="Repositories" />
 
       <ul>
-        {projects.map(project => <li key={project}>{project}</li>)}
+        {repositories.map(repository => <li key={repository.id}>{repository.title}</li>)}
       </ul>
 
-      <button type="button" onClick={handleAddProject}>
-        Adicionar projeto
+      <button type="button" onClick={handleAddRepository}>
+        Adicionar repositório
       </button>
     </>
   )
