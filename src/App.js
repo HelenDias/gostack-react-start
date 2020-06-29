@@ -14,15 +14,16 @@ function App() {
       .then(response => setRepositories(response.data))
   }, [])
 
-  function handleAddRepository() {
+  async function handleAddRepository() {
     const data = {
       title: 'Teste',
       techs: ['Tecnologia 1', 'Tecnologia 2'],
       url: 'http://teste.com/teste'
     }
 
-    api.post('repositories', data)
-      .then(response => setRepositories([...repositories, response.data]))
+    const response = await api.post('repositories', data)
+
+    return setRepositories([...repositories, response.data])
   }
 
   return (
